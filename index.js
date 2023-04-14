@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v;
 const cors = require("cors");
 app.use(cors());
 const app = express();
 app.use(express.json());
+require("dotenv").config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -26,6 +27,6 @@ app.all("*", (req, res) => {
   res.status(404).json({ message: "This route does not exist" });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started");
 });
